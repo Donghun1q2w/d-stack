@@ -1,0 +1,565 @@
+{
+  "$comment": "dstack repository check configuration. All patterns are JavaScript RegExp sources. Edit this file, not check-dstack.mjs, to change rules.",
+  "version": 1,
+  "expected": {
+    "pluginName": "dstack",
+    "marketplaceName": "d-stack",
+    "skills": 62,
+    "playbooks": 19,
+    "agents": 2,
+    "principleSkills": 24,
+    "dModeSkill": "d-mode",
+    "guidePages": 11
+  },
+  "scan": {
+    "excludeDirs": [
+      ".git",
+      "node_modules",
+      ".omc"
+    ],
+    "binaryExtensions": [
+      ".png",
+      ".jpg",
+      ".jpeg",
+      ".gif",
+      ".ico",
+      ".exe",
+      ".dll",
+      ".pdf",
+      ".zip",
+      ".mp4"
+    ],
+    "proseExtensions": [
+      ".md",
+      ".tsv",
+      ".txt"
+    ]
+  },
+  "allowlist": [
+    {
+      "path": "LICENSE",
+      "rules": [
+        "*"
+      ],
+      "reason": "MIT notice must keep the upstream copyright holder"
+    },
+    {
+      "path": "docs/UPSTREAM.md",
+      "rules": [
+        "*"
+      ],
+      "reason": "provenance and sync procedure name the upstream project"
+    },
+    {
+      "path": "docs/plans/**",
+      "rules": [
+        "*"
+      ],
+      "reason": "dh-dev plan archive, not plugin content"
+    },
+    {
+      "path": "docs/plan_history.md",
+      "rules": [
+        "*"
+      ],
+      "reason": "dh-dev plan index"
+    },
+    {
+      "path": "docs/revisions/**",
+      "rules": [
+        "*"
+      ],
+      "reason": "revision-tracker logs"
+    },
+    {
+      "path": "docs/revision_history.md",
+      "rules": [
+        "*"
+      ],
+      "reason": "revision-tracker index"
+    },
+    {
+      "path": "scripts/check-dstack.config.json",
+      "rules": [
+        "*"
+      ],
+      "reason": "this file defines the banned terms"
+    },
+    {
+      "path": "tests/**",
+      "rules": [
+        "*"
+      ],
+      "reason": "adversarial fixtures plant banned terms on purpose"
+    },
+    {
+      "path": "skills/statechart/scripts/statechart",
+      "rules": [
+        "SHELL"
+      ],
+      "reason": "upstream POSIX launcher that test/cli.test.ts exercises; Windows uses the node command in SKILL.md"
+    },
+    {
+      "path": "skills/statechart/scripts/test/**",
+      "rules": [
+        "SHELL",
+        "CRLF",
+        "IDENTITY"
+      ],
+      "reason": "upstream test fixtures and recorded TLC output are kept byte for byte, so they keep the recording machine's paths, which include the upstream folder name"
+    },
+    {
+      "path": "scripts/migration/**",
+      "rules": [
+        "*"
+      ],
+      "reason": "one-time migration record that maps upstream names to dstack names, so it holds every upstream term"
+    }
+  ],
+  "residue": [
+    {
+      "id": "PR",
+      "scope": "all",
+      "flags": "",
+      "patterns": [
+        "\\bPRs?\\b",
+        "\\bgh pr\\b",
+        "\\borigin pr\\b"
+      ]
+    },
+    {
+      "id": "PR",
+      "scope": "all",
+      "flags": "i",
+      "patterns": [
+        "pull[ -]requests?",
+        "merge queue",
+        "merge-ready",
+        "auto-merge",
+        "stacked (prs?|diffs?)",
+        "\\bGraphite\\b"
+      ]
+    },
+    {
+      "id": "PR",
+      "scope": "prose",
+      "flags": "i",
+      "patterns": [
+        "\\bprs?\\b"
+      ]
+    },
+    {
+      "id": "CURSOR",
+      "scope": "prose",
+      "flags": "i",
+      "patterns": [
+        "cursor"
+      ]
+    },
+    {
+      "id": "CURSOR",
+      "scope": "code",
+      "flags": "",
+      "patterns": [
+        "\\bCursor\\b",
+        "\\.cursor\\b",
+        "@cursor\\b",
+        "cursor[-.](team-kit|skill|plugin|sh|com)",
+        "cursor/plugins"
+      ]
+    },
+    {
+      "id": "CURSOR",
+      "scope": "all",
+      "flags": "i",
+      "patterns": [
+        "bugbot",
+        "\\.mdc\\b",
+        "deslop",
+        "control-ui",
+        "control-cli",
+        "/add-plugin",
+        "custom modes?",
+        "/in-cloud",
+        "cloud (sub)?agents?",
+        "agent-transcripts",
+        "agents window",
+        "create-skill",
+        "control skill",
+        "project workers?"
+      ]
+    },
+    {
+      "id": "HARNESS",
+      "scope": "all",
+      "flags": "",
+      "patterns": [
+        "`Task`",
+        "\\bTask (tool|subagent|call)",
+        "AskQuestion",
+        "\\btodolist\\b",
+        "generalPurpose",
+        "readonly: (true|false)",
+        "environment: \"(cloud|local)\"",
+        "cloud_base_branch",
+        "`resume`",
+        "file_attachments",
+        "is_background",
+        "\\bclaude-[a-z]+-\\d",
+        "\\bgrok-\\d",
+        "\\bgpt-\\d",
+        "inherit-parent",
+        "always-applied",
+        "alwaysApply",
+        "run_in_background"
+      ]
+    },
+    {
+      "id": "HARNESS",
+      "scope": "all",
+      "flags": "i",
+      "patterns": [
+        "gemini",
+        "\\bgrok\\b"
+      ]
+    },
+    {
+      "id": "IDENTITY",
+      "scope": "all",
+      "flags": "i",
+      "patterns": [
+        "poteto",
+        "pstack",
+        "\\bbenny\\b",
+        "make-bot-ui"
+      ]
+    },
+    {
+      "id": "MACOS",
+      "scope": "all",
+      "flags": "i",
+      "patterns": [
+        "pbcopy",
+        "osascript",
+        "xcrun",
+        "simctl",
+        "option\\+enter",
+        "ios simulator",
+        "deriveddata",
+        "~/Library",
+        "\\bbrew\\b",
+        "spindump",
+        "xctrace",
+        "\\bdtrace\\b",
+        "screencapture",
+        "\\bopen -a\\b",
+        "instruments\\.app"
+      ]
+    },
+    {
+      "id": "SHELL",
+      "scope": "all",
+      "flags": "",
+      "patterns": [
+        "^#!.*\\b(ba|z)?sh\\b",
+        "```(bash|sh|zsh)\\b",
+        "\\b[\\w-]+\\.sh\\b",
+        "(^|[\\s`\"'(])/tmp/",
+        "\\bdf -h\\b",
+        "\\brm -rf\\b",
+        "\\bcommand -v\\b",
+        "\\bchmod\\b",
+        "\\bls -t\\b",
+        "\\bmktemp\\b",
+        "/dev/null",
+        "\\bexport [A-Z_]+=",
+        "\\$\\((git|cat|ls|pwd|date|dirname|basename|echo|command|which)\\b",
+        "~/(?!\\.claude\\b)",
+        "\\b(grep|sed|awk|xargs|cat) -[a-zA-Z]"
+      ]
+    },
+    {
+      "id": "PR",
+      "scope": "all",
+      "flags": "",
+      "patterns": [
+        "풀 ?리퀘스트",
+        "머지 ?요청",
+        "병합 ?요청",
+        "병합 ?대기열",
+        "코드 ?리뷰 ?요청"
+      ]
+    },
+    {
+      "id": "CURSOR",
+      "scope": "all",
+      "flags": "",
+      "patterns": [
+        "커서",
+        "버그봇",
+        "클라우드 에이전트"
+      ]
+    }
+  ],
+  "routes": {
+    "externalCommands": [
+      "plugin",
+      "loop",
+      "help",
+      "clear",
+      "compact",
+      "config",
+      "model",
+      "agents"
+    ],
+    "ignoreCommandPattern": "^(verify-|[a-z]+-mode$)"
+  },
+  "ps1": {
+    "requireAscii": true,
+    "requireCrlf": true,
+    "requiredLines": [
+      "^#Requires -Version 5\\.1\\s*$",
+      "^Set-StrictMode -Version Latest\\s*$",
+      "^\\$ErrorActionPreference = 'Stop'\\s*$"
+    ],
+    "denylist": [
+      {
+        "pattern": "&&",
+        "why": "pipeline chain operator is PowerShell 7+"
+      },
+      {
+        "pattern": "\\|\\|",
+        "why": "pipeline chain operator is PowerShell 7+"
+      },
+      {
+        "pattern": "\\?\\?",
+        "why": "null-coalescing is PowerShell 7+"
+      },
+      {
+        "pattern": "\\?\\.",
+        "why": "null-conditional is PowerShell 7+"
+      },
+      {
+        "pattern": "\\?\\s+[^:\\n]+\\s+:\\s",
+        "why": "ternary is PowerShell 7+"
+      },
+      {
+        "pattern": "-Parallel\\b",
+        "why": "ForEach-Object -Parallel is PowerShell 7+"
+      },
+      {
+        "pattern": "\\$Is(Windows|MacOS|Linux)\\b",
+        "why": "automatic variable is PowerShell 6+"
+      },
+      {
+        "pattern": "\\$PSStyle\\b",
+        "why": "PowerShell 7.2+"
+      },
+      {
+        "pattern": "-AsHashtable\\b",
+        "why": "ConvertFrom-Json -AsHashtable is PowerShell 6+"
+      },
+      {
+        "pattern": "utf8NoBOM|utf8BOM",
+        "why": "encoding names are PowerShell 6+"
+      },
+      {
+        "pattern": "\\b(Out-File|Set-Content|Add-Content)\\b",
+        "why": "5.1 default encodings differ; write through [System.IO.File] with an explicit UTF8Encoding($false)"
+      },
+      {
+        "pattern": "(^|[^2>])>>?\\s*[\\$\\w\"']",
+        "why": "redirection writes UTF-16 in 5.1; write through [System.IO.File]"
+      },
+      {
+        "pattern": "\\bGet-Error\\b|\\bJoin-String\\b|\\bConvertFrom-Markdown\\b",
+        "why": "cmdlet does not exist in Windows PowerShell 5.1"
+      }
+    ],
+    "fenceDenylist": [
+      {
+        "pattern": "&&",
+        "why": "not valid in Windows PowerShell 5.1"
+      },
+      {
+        "pattern": "\\|\\|",
+        "why": "not valid in Windows PowerShell 5.1"
+      }
+    ]
+  },
+  "language": {
+    "koreanRequired": [
+      "README.md",
+      "docs/guide/*.md",
+      "docs/EXTENDING.md",
+      "docs/UPSTREAM.md"
+    ],
+    "minHangul": 200,
+    "englishOnly": [
+      "skills/**",
+      "agents/**"
+    ]
+  },
+  "languageSkills": {
+    "names": [
+      "csharp-best-practices",
+      "python-best-practices",
+      "rust-best-practices",
+      "pml-best-practices"
+    ],
+    "gateHeadings": [
+      "## Build and test",
+      "## Load and run"
+    ],
+    "requiredHeadings": [
+      "## Rules"
+    ],
+    "patternsFile": "references/patterns.md"
+  },
+  "required": [
+    {
+      "path": "skills/d-mode/playbooks/commit-and-push.md",
+      "reason": "failure cases, guards, and commands of the push procedure",
+      "contains": [
+        "| F01 |",
+        "| F02 |",
+        "| F03 |",
+        "| F04 |",
+        "| F05 |",
+        "| F06 |",
+        "| F07 |",
+        "| F08 |",
+        "| F09 |",
+        "| F10 |",
+        "| F11 |",
+        "| F12 |",
+        "| F13 |",
+        "| F14 |",
+        "| F15 |",
+        "| F16 |",
+        "- N1.",
+        "- N2.",
+        "- N3.",
+        "- N4.",
+        "- N5.",
+        "dstack-gate: manual",
+        "Verification: manual (",
+        "git diff --stat origin/main..HEAD",
+        "Exit 1 means it moved",
+        "Any other exit code is an error",
+        "Never stage a secret",
+        "stop at the first non-zero exit"
+      ]
+    },
+    {
+      "path": "skills/d-mode/SKILL.md",
+      "reason": "autonomy limits and the shell rule",
+      "contains": [
+        "A fast-forward push to `main` after the Commit and push gate passed is normal delivery and proceeds without asking.",
+        "a push whose verification failed or never ran",
+        "a push whose diff reaches past the stated goal",
+        "any force-push",
+        "`shell:` line",
+        "powershell -NoProfile -ExecutionPolicy Bypass -File"
+      ]
+    },
+    {
+      "path": "skills/setup-dstack/SKILL.md",
+      "reason": "documented fallback for every missing or malformed setting",
+      "contains": [
+        "| Missing file |",
+        "| Missing line |",
+        "| Unknown role |",
+        "| Malformed value |",
+        "| No `# defaults: 1` line |",
+        "| `shell` |",
+        "| Missing `shell` line |",
+        "| Malformed `shell` value |",
+        "shell: bash",
+        "### 2. Detect the shell"
+      ]
+    },
+    {
+      "path": "skills/d-mode/playbooks/autopilot.md",
+      "reason": "a verdict covers one patch",
+      "contains": [
+        "compare `git patch-id` once more before the push"
+      ]
+    },
+    {
+      "path": "skills/d-mode/scripts/bootstrap.ts",
+      "reason": "kept bun tool bootstrap",
+      "contains": [
+        "ensureDependenciesInstalled"
+      ]
+    },
+    {
+      "path": "skills/d-mode/scripts/package.json",
+      "reason": "kept bun tool manifest, free of the deleted watcher",
+      "contains": [
+        "\"commander\""
+      ],
+      "absent": [
+        "watch-pr"
+      ]
+    },
+    {
+      "path": "skills/d-mode/scripts/bun.lock",
+      "reason": "kept lockfile for the bun tool bootstrap",
+      "contains": [
+        "commander"
+      ]
+    },
+    {
+      "path": "skills/statechart/SKILL.md",
+      "reason": "bun is the documented Windows runtime",
+      "contains": [
+        "bun \"<skill dir>/scripts/statechart.ts\"",
+        "Node 22.18 or later"
+      ]
+    },
+    {
+      "path": "skills/pml-best-practices/SKILL.md",
+      "reason": "every PML rule names its source",
+      "contains": [
+        "| Source |",
+        "unverified",
+        "dstack-gate: manual"
+      ]
+    },
+    {
+      "path": "docs/EXTENDING.md",
+      "reason": "extension guide sections",
+      "contains": [
+        "## 공개 인터페이스",
+        "## 하위 호환 규칙",
+        "## 언어 스킬 추가",
+        "## 플레이북 추가"
+      ]
+    },
+    {
+      "path": "docs/UPSTREAM.md",
+      "reason": "reproducible upstream fetch and the one-time tools",
+      "contains": [
+        "git clone https://github.com/cursor/plugins",
+        "scripts/migration/"
+      ]
+    },
+    {
+      "path": "README.md",
+      "reason": "prerequisites",
+      "contains": [
+        "Node.js 22.18",
+        "core.longpaths",
+        "dstack-gate: manual"
+      ]
+    },
+    {
+      "path": "tests/windows-smoke.ps1",
+      "reason": "user-side Windows smoke test",
+      "contains": [
+        "PASS windows-smoke"
+      ]
+    }
+  ]
+}

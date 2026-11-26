@@ -1,0 +1,836 @@
+{
+  "$comment": "One-time migration record. Maps the pinned upstream commit to the dstack tree. Paths and line numbers are upstream's at that commit. Edits run first, by line, then literal replacements in order. Files matching verbatim are copied byte for byte.",
+  "version": 1,
+  "upstream": {
+    "repository": "https://github.com/cursor/plugins",
+    "folder": "pstack",
+    "commit": "b7b93c36be9bcc36a74db438e0fd385d660bc559",
+    "version": "0.15.48"
+  },
+  "binaryExtensions": [
+    ".png",
+    ".jpg",
+    ".jpeg",
+    ".gif",
+    ".ico"
+  ],
+  "delete": [
+    "automations/**",
+    "skills/make-bot-ui/**",
+    "skills/poteto-mode/references/**",
+    "skills/show-me-your-work/scripts/log.sh",
+    "docs/harness/**",
+    ".cursor-plugin/**",
+    "plugin.json",
+    "assets/**",
+    "docs/guide/images/router.jpg",
+    "skills/poteto-mode/playbooks/opening-a-pr.md",
+    "skills/poteto-mode/playbooks/babysit.md",
+    "skills/poteto-mode/playbooks/shipping.md",
+    "skills/poteto-mode/playbooks/autopilot-full.md",
+    "skills/poteto-mode/playbooks/autopilot-stack.md",
+    "skills/poteto-mode/scripts/watch-pr/**",
+    "skills/poteto-mode/scripts/worktree-audit.sh"
+  ],
+  "handWritten": [
+    "README.md",
+    "LICENSE",
+    ".gitignore",
+    "docs/guide/*.md",
+    "agents/poteto-agent.md",
+    "skills/poteto-mode/SKILL.md",
+    "skills/poteto-mode/worker.md",
+    "skills/poteto-mode/playbooks/multi-phase-plan.md",
+    "skills/poteto-mode/playbooks/worktree-cleanup.md",
+    "skills/setup-pstack/SKILL.md",
+    "skills/poteto-help/SKILL.md"
+  ],
+  "verbatim": [
+    "skills/statechart/scripts/test/**"
+  ],
+  "rename": [
+    [
+      "skills/poteto-mode/",
+      "skills/d-mode/"
+    ],
+    [
+      "skills/poteto-help/",
+      "skills/d-help/"
+    ],
+    [
+      "skills/setup-pstack/",
+      "skills/setup-dstack/"
+    ]
+  ],
+  "edits": [
+    {
+      "path": "skills/arena/SKILL.md",
+      "line": 9,
+      "old": "Open a todolist with",
+      "new": "Open a `TodoWrite` list with"
+    },
+    {
+      "path": "skills/arena/SKILL.md",
+      "line": 17,
+      "old": "*",
+      "new": "3. Pick the runners from the `arena runners` line in `~/.claude/rules/dstack-models.md`, by default `fable high`, `opus high`, and `codex`. An `inherit` entry is the session model, so omit `model` and `effort` and spawn `general-purpose`. A `codex` entry spawns `subagent_type: \"codex:codex-rescue\"` with the same task and output path, and runs as `opus high` when that agent is not available. If the `Agent` tool rejects a model or effort, use the role default for that seat or drop the seat, keep at least two runners, and say so. Spawn more for multiple design directions, and repeat one model when the work is generation-bound, not judgment-sensitive. Pick each subagent's reasoning level per the Subagents section of the **d-mode** skill."
+    },
+    {
+      "path": "skills/arena/SKILL.md",
+      "line": 18,
+      "old": "otherwise `/tmp/arena-<slug>/candidate-<n>/`",
+      "new": "otherwise `$env:TEMP\\arena-<slug>\\candidate-<n>\\`"
+    },
+    {
+      "path": "skills/arena/SKILL.md",
+      "line": 22,
+      "old": "in one message with `run_in_background: true`, each with",
+      "new": "in one message, each with"
+    },
+    {
+      "path": "skills/arena/SKILL.md",
+      "line": 28,
+      "old": "*",
+      "new": "After all Phase B candidates complete, spawn one judge from the `arena cross-judge pool` line in `~/.claude/rules/dstack-models.md`, by default `codex`, `opus high`. Spawn it as `subagent_type: \"Explore\"` with \"do not edit files\" in its brief, or as `codex:codex-rescue` for a `codex` entry. The judge comes from another vendor than the session model when one is available, so use the `codex` entry first. When the codex agent is not available, use the first `<model> <effort>` entry and say that the judge shares the session's vendor. An `inherit` entry is the session model and never judges. If the `Agent` tool rejects a value, use the next entry, or skip the judge, and say so. While you read in Phase D, the judge scores each candidate, by path label, on each rubric criterion and recommends a base."
+    },
+    {
+      "path": "skills/swarm/SKILL.md",
+      "line": 11,
+      "old": "Open a todolist with",
+      "new": "Open a `TodoWrite` list with"
+    },
+    {
+      "path": "skills/swarm/SKILL.md",
+      "line": 22,
+      "old": "*",
+      "new": "3. Pick the worker model from the `swarm workers` line in `~/.claude/rules/dstack-models.md`. If the file or that line is missing, use `opus high`. For `inherit`, omit `model` and `effort` so the workers run on the session model. If the `Agent` tool rejects a value, use the default and say so. For a model race, name each arm's model up front. Pick each subagent's reasoning level for the job, per the Subagents section of the **d-mode** skill."
+    },
+    {
+      "path": "skills/swarm/SKILL.md",
+      "line": 27,
+      "old": "*",
+      "new": "Spawn all N workers in one message with `subagent_type: \"general-purpose\"`, `isolation: \"worktree\"`, and the step 3 model and effort, left unset for `inherit`. Omit `isolation` only when the worker must read or change the user's own checkout, and then give it files no other worker touches."
+    },
+    {
+      "path": "skills/swarm/SKILL.md",
+      "line": 29,
+      "old": "*",
+      "new": "When a worker must start from a branch or commit other than `HEAD`, name it in the brief and tell the worker to check it out first."
+    },
+    {
+      "path": "skills/interrogate/SKILL.md",
+      "line": 13,
+      "old": "from the user's message, the commits, and the PR description.",
+      "new": "from the user's message and the commit messages."
+    },
+    {
+      "path": "skills/interrogate/SKILL.md",
+      "line": 17,
+      "old": "Spawn each adversary as `generalPurpose`.",
+      "new": "Spawn each adversary as `general-purpose`, or as `codex:codex-rescue` for a `codex` entry."
+    },
+    {
+      "path": "skills/how/SKILL.md",
+      "line": 15,
+      "old": "Spawn one Task subagent with `subagent_type: generalPurpose` and `readonly: true` that explores",
+      "new": "Spawn one subagent with `subagent_type: \"Explore\"` that explores"
+    },
+    {
+      "path": "skills/recall/SKILL.md",
+      "line": 15,
+      "old": "*",
+      "new": "Transcripts live at `~/.claude/projects/<slug>/<session-id>.jsonl` (`%USERPROFILE%\\.claude\\projects\\` on Windows), where `<slug>` is the workspace path with every character that is not a letter or a digit turned into `-` (so `C:\\work\\proj` becomes `C--work-proj`). If that folder does not exist, list `~/.claude/projects/` and pick the folder whose newest `.jsonl` records this workspace as its `cwd`. Subagent transcripts are under `<session-id>/subagents/`. Every line is one message."
+    },
+    {
+      "path": "skills/recall/SKILL.md",
+      "line": 19,
+      "old": "(`ls -t`)",
+      "new": "(`Sort-Object LastWriteTime -Descending`)"
+    },
+    {
+      "path": "skills/recall/SKILL.md",
+      "line": 19,
+      "old": "artifacts (PRs, tickets, branches)",
+      "new": "artifacts (commits, tickets, branches)"
+    },
+    {
+      "path": "skills/recall/SKILL.md",
+      "line": 20,
+      "old": "in agent mode because readonly strips MCP access",
+      "new": "as `general-purpose`, which keeps the session's MCP servers"
+    },
+    {
+      "path": "skills/recall/SKILL.md",
+      "line": 21,
+      "old": "Take the PRs, branches, and tickets that the mining and the sweep surfaced and check them with `git` and `gh`.",
+      "new": "Take the commits, branches, and tickets that the mining and the sweep surfaced and check them with `git`, and with `gh issue` for tickets on GitHub."
+    },
+    {
+      "path": "skills/recall/SKILL.md",
+      "line": 29,
+      "old": "`[merged #N]`, `[open PR #N]`, `[in flight <branch>]`, `[verified, uncommitted]`, `[reverted #N]`",
+      "new": "`[pushed <sha>]`, `[committed, not pushed <branch>]`, `[in flight <branch>]`, `[verified, uncommitted]`, `[reverted <sha>]`"
+    },
+    {
+      "path": "skills/recall/SKILL.md",
+      "line": 33,
+      "old": "(PR #, ticket ID,",
+      "new": "(commit SHA, ticket ID,"
+    },
+    {
+      "path": "skills/maintain-verification-skill/SKILL.md",
+      "line": 3,
+      "old": "at most one PR of proven corrections",
+      "new": "at most one commit of proven corrections"
+    },
+    {
+      "path": "skills/maintain-verification-skill/SKILL.md",
+      "line": 15,
+      "old": "No branch, no PR.",
+      "new": "No commit."
+    },
+    {
+      "path": "skills/maintain-verification-skill/SKILL.md",
+      "line": 16,
+      "old": "one PR ships proven doc, harness, or map corrections.",
+      "new": "one commit ships proven doc, harness, or map corrections, pushed through the Commit and push playbook of the **d-mode** skill."
+    },
+    {
+      "path": "skills/maintain-verification-skill/SKILL.md",
+      "line": 25,
+      "old": "(usually `.cursor/skills/verify-*/`)",
+      "new": "(usually `.claude/skills/verify-*/`)"
+    },
+    {
+      "path": "skills/maintain-verification-skill/SKILL.md",
+      "line": 35,
+      "old": "(scripts executable, invocation documented in the skill body)",
+      "new": "(scripts runnable as shipped, invocation documented in the skill body)"
+    },
+    {
+      "path": "skills/maintain-verification-skill/SKILL.md",
+      "line": 35,
+      "old": "keep it out of this PR.",
+      "new": "keep it out of this commit."
+    },
+    {
+      "path": "skills/maintain-verification-skill/SKILL.md",
+      "line": 37,
+      "old": "For changed: one PR of proven corrections, re-read every changed file first. For clean or blocked: no PR, report",
+      "new": "For changed: one commit of proven corrections, re-read every changed file first. For clean or blocked: no commit, report"
+    },
+    {
+      "path": "skills/ketchup/SKILL.md",
+      "line": 11,
+      "old": "Call each PR, branch, or agent by a name",
+      "new": "Call each commit, branch, or agent by a name"
+    },
+    {
+      "path": "skills/ketchup/SKILL.md",
+      "line": 15,
+      "old": "Check the current state of each PR, CI run, or agent this chat touched.",
+      "new": "Check the current state of each branch, push, test run, or agent this chat touched."
+    },
+    {
+      "path": "skills/ketchup/SKILL.md",
+      "line": 19,
+      "old": "such as each PR in a set awaiting merge",
+      "new": "such as each branch in a set waiting to be pushed"
+    },
+    {
+      "path": "skills/ketchup/SKILL.md",
+      "line": 29,
+      "old": "such as merge, approve, or pick",
+      "new": "such as push, approve, or pick"
+    },
+    {
+      "path": "skills/ketchup/SKILL.md",
+      "line": 29,
+      "old": "Give the number or link of each PR, issue, or agent",
+      "new": "Give the SHA, branch name, or link of each commit, issue, or agent"
+    },
+    {
+      "path": "skills/ketchup/SKILL.md",
+      "line": 39,
+      "old": "a PR stack or dependency chain with each PR's state",
+      "new": "a commit sequence or dependency chain with each unit's state"
+    },
+    {
+      "path": "skills/ketchup-video/SKILL.md",
+      "line": 15,
+      "old": "a PR stack with each PR's state",
+      "new": "a commit sequence with each unit's state"
+    },
+    {
+      "path": "skills/no-comments/SKILL.md",
+      "line": 19,
+      "old": "Spawn `Task` with `subagent_type: \"comment-sicko\"`.",
+      "new": "Spawn `Agent` with `subagent_type: \"dstack:comment-sicko\"`."
+    },
+    {
+      "path": "skills/figure-it-out/SKILL.md",
+      "line": 13,
+      "old": "Open a todolist whose first item",
+      "new": "Open a `TodoWrite` list whose first item"
+    },
+    {
+      "path": "skills/figure-it-out/SKILL.md",
+      "line": 34,
+      "old": "Add its steps to the todolist as",
+      "new": "Add its steps to the `TodoWrite` list as"
+    },
+    {
+      "path": "skills/figure-it-out/SKILL.md",
+      "line": 46,
+      "old": "so the reviewer can read it in the PR.",
+      "new": "so the reviewer can read it beside the commits."
+    },
+    {
+      "path": "skills/benchmark-checklist/SKILL.md",
+      "line": 9,
+      "old": "a PR's before and after",
+      "new": "a change's before and after"
+    },
+    {
+      "path": "skills/benchmark-checklist/SKILL.md",
+      "line": 34,
+      "old": "Keep a PR body to one primary number.",
+      "new": "Keep a commit body to one primary number."
+    },
+    {
+      "path": "skills/blast-radius/SKILL.md",
+      "line": 33,
+      "old": "Pull the PR and its commits.",
+      "new": "Read its commits and their messages."
+    },
+    {
+      "path": "skills/blast-radius/SKILL.md",
+      "line": 46,
+      "old": "**Before you merge.**",
+      "new": "**Before you push.**"
+    },
+    {
+      "path": "skills/technical-writing/SKILL.md",
+      "line": 3,
+      "old": "readmes, PR descriptions, or commit messages",
+      "new": "readmes, or commit messages"
+    },
+    {
+      "path": "skills/technical-writing/SKILL.md",
+      "line": 68,
+      "old": "- PR descriptions and commit messages are writing too. Every layer except Diátaxis applies to them. A PR body is a briefing",
+      "new": "- Commit messages are writing too. Every layer except Diátaxis applies to them. A commit body is a briefing"
+    },
+    {
+      "path": "skills/why/SKILL.md",
+      "line": 9,
+      "old": "read the commits and PR discussions that introduced",
+      "new": "read the commits, their messages, and any linked issue or review discussion that introduced"
+    },
+    {
+      "path": "skills/principle-sequence-verifiable-units/SKILL.md",
+      "line": 3,
+      "old": "and to how you stack commits and PRs.",
+      "new": "and to how you order commits."
+    },
+    {
+      "path": "skills/create-verification-skill/SKILL.md",
+      "line": 32,
+      "old": "any script the skill ships is executable and its invocation is shown",
+      "new": "any script the skill ships runs as shipped on Windows (a `.ps1` for Windows PowerShell 5.1, or a script for a runtime the project already uses) and its invocation is shown"
+    },
+    {
+      "path": "skills/reflect/SKILL.md",
+      "line": 17,
+      "old": "Never open a PR or push.",
+      "new": "Never commit or push."
+    },
+    {
+      "path": "skills/show-me-your-work/SKILL.md",
+      "line": 21,
+      "old": "commit SHA, PR number, `file:line`",
+      "new": "commit SHA, `file:line`"
+    },
+    {
+      "path": "skills/show-me-your-work/SKILL.md",
+      "line": 29,
+      "old": "scripts/snapshot.sh, baseline/",
+      "new": "scripts/snapshot.ps1, baseline/"
+    },
+    {
+      "path": "skills/show-me-your-work/SKILL.md",
+      "line": 38,
+      "old": "*",
+      "new": "Use the helper `powershell -NoProfile -ExecutionPolicy Bypass -File \"<this skill's folder>\\scripts\\log.ps1\" -LogFile <logfile> -Phase <phase> -Decision <decision> -Why <why> -Evidence <evidence> -Result <result>`. It stamps `ts`, writes the header on first use, strips stray tabs and line breaks, and prefixes any cell starting with `=`, `+`, `-`, or `@` with a single quote. Bind a value that itself starts with `-` with a colon, as in `-Evidence:'-12%'`. Appending a row by hand works too, but write UTF-8 without a byte order mark, and mind those same characters if cells come from generated or user-supplied text."
+    },
+    {
+      "path": "skills/show-me-your-work/SKILL.md",
+      "line": 57,
+      "old": "Read this run's transcript under the active workspace's `agent-transcripts/` directory (the system prompt names the path). Don't glob across `~/.cursor/projects/*/`.",
+      "new": "Read this run's transcript, the newest `.jsonl` in this workspace's folder under `~/.claude/projects/` (the **recall** skill says how to find the folder). Don't glob across `~/.claude/projects/*/`."
+    },
+    {
+      "path": "skills/show-me-your-work/SKILL.md",
+      "line": 67,
+      "old": "spawn a subagent on another vendor's model than the one that did the work.",
+      "new": "spawn a reviewer on the `codex` seat (`subagent_type: \"codex:codex-rescue\"`). When that agent is not available, use a Claude model other than the one that did the work, and say that the review stayed within one vendor."
+    },
+    {
+      "path": "skills/show-me-your-work/SKILL.md",
+      "line": 78,
+      "old": "`column -s$'\\t' -t decisions.tsv` renders it in a terminal.",
+      "new": "`Import-Csv -Delimiter ([char]9) decisions.tsv | Format-Table -AutoSize` renders it in PowerShell."
+    },
+    {
+      "path": "skills/statechart/SKILL.md",
+      "line": 15,
+      "old": "*",
+      "new": "```text"
+    },
+    {
+      "path": "skills/statechart/SKILL.md",
+      "line": 16,
+      "old": "*",
+      "new": "bun \"<skill dir>/scripts/statechart.ts\" SPEC.tla [--config FILE] [--view FILE] [--out DIR]"
+    },
+    {
+      "path": "skills/statechart/SKILL.md",
+      "line": 19,
+      "old": "*",
+      "new": "`scripts/statechart.ts` is TypeScript. On Windows run it with Bun 1.1.5 or later, as shown. Without Bun, Node 22.18 or later runs it as `node --disable-warning=ExperimentalWarning \"<skill dir>/scripts/statechart.ts\"`. Outside Windows, `scripts/statechart` is a POSIX shell script that picks a runtime."
+    },
+    {
+      "path": "skills/statechart/SKILL.md",
+      "line": 21,
+      "old": "*",
+      "new": "The first run installs TLC and Java with mise and needs the network. Without mise, set `TLA2TOOLS` to the path of `tla2tools.jar` and `JAVA` to a Java 11 or later binary before the run."
+    },
+    {
+      "path": "skills/statechart/scripts/package.json",
+      "line": 2,
+      "old": "\"@cursor-skill/statechart\"",
+      "new": "\"@dstack-skill/statechart\""
+    },
+    {
+      "path": "skills/automate-me/SKILL.md",
+      "line": 3,
+      "old": "via create-skill + unslop",
+      "new": "with the unslop skill"
+    },
+    {
+      "path": "skills/automate-me/SKILL.md",
+      "line": 11,
+      "old": "*",
+      "new": "This skill orchestrates three things: an inline mining pass (see step 1), the Authoring a skill playbook of the **d-mode** skill (`../d-mode/playbooks/authoring-a-skill.md`), and the **unslop** skill (prose discipline). It sequences them. It doesn't replace them."
+    },
+    {
+      "path": "skills/automate-me/SKILL.md",
+      "line": 17,
+      "old": "confirm intent with `AskQuestion`",
+      "new": "confirm intent with `AskUserQuestion`"
+    },
+    {
+      "path": "skills/automate-me/SKILL.md",
+      "line": 29,
+      "old": "The system prompt names the workspace's `agent-transcripts/` directory. Use only that path. Don't glob across `~/.cursor/projects/*/`.",
+      "new": "They are the `.jsonl` files in this workspace's folder under `~/.claude/projects/` (the **recall** skill says how to find the folder). Use only that folder. Don't glob across `~/.claude/projects/*/`."
+    },
+    {
+      "path": "skills/automate-me/SKILL.md",
+      "line": 37,
+      "old": "(worktrees, commits, PRs, review/merge tooling)",
+      "new": "(worktrees, commits, pushes, review tooling)"
+    },
+    {
+      "path": "skills/automate-me/SKILL.md",
+      "line": 44,
+      "old": "Use the `AskQuestion` tool",
+      "new": "Use the `AskUserQuestion` tool"
+    },
+    {
+      "path": "skills/automate-me/SKILL.md",
+      "line": 46,
+      "old": "`allow_multiple: true`",
+      "new": "`multiSelect: true`"
+    },
+    {
+      "path": "skills/automate-me/SKILL.md",
+      "line": 60,
+      "old": "git worktrees, commits, PRs, review/merge tooling.",
+      "new": "git worktrees, commits, pushes, review tooling."
+    },
+    {
+      "path": "skills/automate-me/SKILL.md",
+      "line": 67,
+      "old": "Use Cursor's built-in `create-skill` skill to author the skill.",
+      "new": "Author the skill per `../d-mode/playbooks/authoring-a-skill.md`."
+    },
+    {
+      "path": "skills/automate-me/SKILL.md",
+      "line": 71,
+      "old": "or \"review PR\"",
+      "new": "or \"review code\""
+    },
+    {
+      "path": "skills/automate-me/SKILL.md",
+      "line": 72,
+      "old": "follow `create-skill`'s YAML rules. Keep",
+      "new": "keep"
+    },
+    {
+      "path": "skills/automate-me/SKILL.md",
+      "line": 77,
+      "old": "Apply the **unslop** skill and `create-skill`'s writing guidelines to every line.",
+      "new": "Apply the **unslop** skill to every line."
+    },
+    {
+      "path": "skills/automate-me/SKILL.md",
+      "line": 83,
+      "old": "*",
+      "new": "Commit the skill file on its own. A project skill lands through the Commit and push playbook of the **d-mode** skill. A personal skill under `~/.claude/skills/` is outside the repository and needs no commit."
+    },
+    {
+      "path": "skills/automate-me/SKILL.md",
+      "line": 96,
+      "old": "A `create-skill`-style test/iterate benchmark loop",
+      "new": "A test-and-iterate benchmark loop"
+    },
+    {
+      "path": "skills/automate-me/SKILL.md",
+      "line": 102,
+      "old": "`create-skill` alone, no mining required.",
+      "new": "the Authoring a skill playbook alone, no mining required."
+    },
+    {
+      "path": "skills/poteto-mode/playbooks/authoring-a-skill.md",
+      "line": 5,
+      "old": "*",
+      "new": "1. Write the `SKILL.md` by hand: YAML frontmatter with `name` equal to the folder name and a one-line `description` that says when to use it, then the body. A project skill lives in `.claude/skills/<name>/`, a personal one in `~/.claude/skills/<name>/`, and a dstack skill in this plugin's `skills/<name>/` per `docs/EXTENDING.md` at the plugin root."
+    },
+    {
+      "path": "skills/poteto-mode/playbooks/authoring-a-skill.md",
+      "line": 6,
+      "old": "cross-skill links resolve.",
+      "new": "cross-skill links resolve. For a dstack skill, `node scripts/check-dstack.mjs` at the plugin root checks all three."
+    },
+    {
+      "path": "skills/poteto-mode/playbooks/authoring-a-skill.md",
+      "line": 8,
+      "old": "4. Run **Opening a PR**.",
+      "new": "4. Run **Commit and push**."
+    },
+    {
+      "path": "skills/poteto-mode/playbooks/autonomous-run.md",
+      "line": 5,
+      "old": "all N PRs merged",
+      "new": "all N units pushed"
+    },
+    {
+      "path": "skills/poteto-mode/playbooks/autonomous-run.md",
+      "line": 6,
+      "old": "using Cursor's `/loop` command (a built-in, not a pstack skill)",
+      "new": "using Claude Code's built-in `/loop` command (not a dstack skill)"
+    },
+    {
+      "path": "skills/poteto-mode/playbooks/autonomous-run.md",
+      "line": 6,
+      "old": "An event to watch (CI, a merge, a ref advancing)",
+      "new": "An event to watch (a test run, a push, a ref advancing)"
+    },
+    {
+      "path": "skills/poteto-mode/playbooks/autonomous-run.md",
+      "line": 9,
+      "old": "Put out-of-band fixes in their own PR. Do not park reversible work for the human or use `AskQuestion`.",
+      "new": "Put out-of-band fixes in their own commit. Do not park reversible work for the human or use `AskUserQuestion`."
+    },
+    {
+      "path": "skills/poteto-mode/playbooks/bug-fix.md",
+      "line": 7,
+      "old": "via the control skill (Non-negotiables)",
+      "new": "via the project's `verify-<app>` skill (Non-negotiables)"
+    },
+    {
+      "path": "skills/poteto-mode/playbooks/bug-fix.md",
+      "line": 7,
+      "old": "the control surface cannot reach the target",
+      "new": "that skill cannot reach the target"
+    },
+    {
+      "path": "skills/poteto-mode/playbooks/bug-fix.md",
+      "line": 8,
+      "old": "with Cursor's `/loop` command",
+      "new": "with Claude Code's built-in `/loop` command"
+    },
+    {
+      "path": "skills/poteto-mode/playbooks/bug-fix.md",
+      "line": 9,
+      "old": "(default `claude-opus-5-5-xhigh-fast`)",
+      "new": "(default `opus xhigh`)"
+    },
+    {
+      "path": "skills/poteto-mode/playbooks/bug-fix.md",
+      "line": 13,
+      "old": "6. Run **Opening a PR**.",
+      "new": "6. Run **Commit and push**."
+    },
+    {
+      "path": "skills/poteto-mode/playbooks/eval.md",
+      "line": 20,
+      "old": "runs on `claude-opus-5-5-medium-fast`",
+      "new": "runs on `opus medium`"
+    },
+    {
+      "path": "skills/poteto-mode/playbooks/eval.md",
+      "line": 22,
+      "old": "Read each candidate's local transcript under the active workspace's `agent-transcripts/` directory (the system prompt names this path). Do not glob across `~/.cursor/projects/*/`.",
+      "new": "Read each candidate's transcript under `<session-id>/subagents/` in this workspace's folder under `~/.claude/projects/` (the **recall** skill says how to find the folder). Do not glob across `~/.claude/projects/*/`."
+    },
+    {
+      "path": "skills/poteto-mode/playbooks/feature.md",
+      "line": 12,
+      "old": "(default `claude-opus-5-5-xhigh-fast`)",
+      "new": "(default `opus xhigh`)"
+    },
+    {
+      "path": "skills/poteto-mode/playbooks/feature.md",
+      "line": 14,
+      "old": "Stack follow-ups.",
+      "new": "Queue follow-ups as later commits."
+    },
+    {
+      "path": "skills/poteto-mode/playbooks/feature.md",
+      "line": 17,
+      "old": "8. Run **Opening a PR**.",
+      "new": "8. Run **Commit and push**."
+    },
+    {
+      "path": "skills/poteto-mode/playbooks/hillclimb.md",
+      "line": 12,
+      "old": "(default `claude-opus-5-5-xhigh-fast`)",
+      "new": "(default `opus xhigh`)"
+    },
+    {
+      "path": "skills/poteto-mode/playbooks/hillclimb.md",
+      "line": 19,
+      "old": "8. Run **Opening a PR** with the accepted commits stacked in the order they landed.",
+      "new": "8. Run **Commit and push** with the accepted commits in the order they were accepted."
+    },
+    {
+      "path": "skills/poteto-mode/playbooks/investigation.md",
+      "line": 12,
+      "old": "No PR, no babysit, no `architect`",
+      "new": "No commit, no push, no `architect`"
+    },
+    {
+      "path": "skills/poteto-mode/playbooks/pause-safely.md",
+      "line": 6,
+      "old": "No PR and no push unless you already had one out.",
+      "new": "No push. A `wip:` commit stays local until the work resumes and passes the Commit and push gate."
+    },
+    {
+      "path": "skills/poteto-mode/playbooks/pause-safely.md",
+      "line": 7,
+      "old": "so nothing is lost.",
+      "new": "so nothing is lost. If the current branch is `main`, first run `git switch -c d/wip-<slug>`, so a later push of `main` cannot carry the checkpoint."
+    },
+    {
+      "path": "skills/poteto-mode/playbooks/pause-safely.md",
+      "line": 8,
+      "old": "`/tmp/<slug>-resume.md`",
+      "new": "`$env:TEMP\\<slug>-resume.md`"
+    },
+    {
+      "path": "skills/poteto-mode/playbooks/perf-issue.md",
+      "line": 5,
+      "old": "via the matching control skill",
+      "new": "via the project's `verify-<app>` skill, or the profiler the language skill names"
+    },
+    {
+      "path": "skills/poteto-mode/playbooks/perf-issue.md",
+      "line": 17,
+      "old": "(default `claude-opus-5-5-xhigh-fast`)",
+      "new": "(default `opus xhigh`)"
+    },
+    {
+      "path": "skills/poteto-mode/playbooks/perf-issue.md",
+      "line": 20,
+      "old": "5. Cite the measurement in the PR.",
+      "new": "5. Cite the measurement in the commit body."
+    },
+    {
+      "path": "skills/poteto-mode/playbooks/perf-issue.md",
+      "line": 21,
+      "old": "6. Run **Opening a PR**.",
+      "new": "6. Run **Commit and push**."
+    },
+    {
+      "path": "skills/poteto-mode/playbooks/prototype.md",
+      "line": 11,
+      "old": "via the control skill",
+      "new": "via the project's `verify-<app>` skill or a browser"
+    },
+    {
+      "path": "skills/poteto-mode/playbooks/refactoring.md",
+      "line": 11,
+      "old": "(default `claude-opus-5-5-xhigh-fast`)",
+      "new": "(default `opus xhigh`)"
+    },
+    {
+      "path": "skills/poteto-mode/playbooks/refactoring.md",
+      "line": 12,
+      "old": "via the relevant control skill",
+      "new": "via the project's `verify-<app>` skill"
+    },
+    {
+      "path": "skills/poteto-mode/playbooks/refactoring.md",
+      "line": 14,
+      "old": "Run **Opening a PR**.",
+      "new": "Run **Commit and push**."
+    },
+    {
+      "path": "skills/poteto-mode/playbooks/runtime-forensics.md",
+      "line": 5,
+      "old": "via the control skill:",
+      "new": "via the project's `verify-<app>` skill or the platform profiler (`dotnet-trace` and `dotnet-dump` for .NET, the browser DevTools for a page):"
+    },
+    {
+      "path": "skills/poteto-mode/playbooks/session-pickup.md",
+      "line": 5,
+      "old": "A local transcript under the active workspace's `agent-transcripts/` directory (the system prompt names the path. Do not glob across `~/.cursor/projects/*/`, that crosses workspace boundaries and reads private chats from unrelated projects), a cloud-agent URL, or a pushed branch.",
+      "new": "A session transcript in this workspace's folder under `~/.claude/projects/` (the **recall** skill says how to find the folder. Do not glob across `~/.claude/projects/*/`, that crosses workspace boundaries and reads private chats from unrelated projects), a `decisions.tsv` trail, or a branch."
+    },
+    {
+      "path": "skills/poteto-mode/playbooks/trace-forensics.md",
+      "line": 5,
+      "old": "a text editor for a spindump,",
+      "new": "PerfView or Windows Performance Analyzer for an ETW trace, `dotnet-dump` for a process dump,"
+    },
+    {
+      "path": "skills/poteto-mode/playbooks/trace-forensics.md",
+      "line": 9,
+      "old": "For a spindump, find",
+      "new": "For a hang dump, find"
+    },
+    {
+      "path": "skills/poteto-mode/playbooks/visual-parity.md",
+      "line": 8,
+      "old": "via the control skill",
+      "new": "via the project's `verify-<app>` skill"
+    },
+    {
+      "path": "skills/poteto-mode/playbooks/visual-parity.md",
+      "line": 9,
+      "old": "5. Run **Opening a PR** per component or per safe batch.",
+      "new": "5. Run **Commit and push** per component or per safe batch."
+    },
+    {
+      "path": "skills/poteto-help/references/recipes.md",
+      "line": 31,
+      "old": "small verifiable PRs, each with",
+      "new": "small verifiable commits, each with"
+    },
+    {
+      "path": "skills/poteto-help/references/recipes.md",
+      "line": 32,
+      "old": "small verifiable PRs. the result",
+      "new": "small verifiable commits. the result"
+    },
+    {
+      "path": "skills/poteto-help/references/recipes.md",
+      "line": 39,
+      "old": "*",
+      "new": "- `/dstack:d-mode commit and push. small ordered commits, evidence in the commit body.`"
+    },
+    {
+      "path": "skills/poteto-help/references/recipes.md",
+      "line": 40,
+      "old": "*",
+      "new": "- `/dstack:d-mode land this once the build and tests pass.` For status only: `/dstack:ketchup`."
+    },
+    {
+      "path": "skills/poteto-help/references/recipes.md",
+      "line": 41,
+      "old": "*",
+      "new": null
+    },
+    {
+      "path": "skills/poteto-help/references/recipes.md",
+      "line": 49,
+      "old": "but don't merge. i'll land them.",
+      "new": "but don't push. i'll land them."
+    },
+    {
+      "path": "skills/create-verification-skill/SKILL.md",
+      "line": 3,
+      "old": "make a control skill for this repo",
+      "new": "make a verify skill for this repo"
+    },
+    {
+      "path": "skills/poteto-mode/scripts/package.json",
+      "line": 5,
+      "old": "*",
+      "new": null
+    },
+    {
+      "path": "skills/poteto-mode/scripts/package.json",
+      "line": 6,
+      "old": "*",
+      "new": null
+    },
+    {
+      "path": "skills/poteto-mode/scripts/package.json",
+      "line": 7,
+      "old": "*",
+      "new": null
+    },
+    {
+      "path": "skills/poteto-mode/scripts/package.json",
+      "line": 8,
+      "old": "*",
+      "new": null
+    }
+  ],
+  "replace": [
+    {
+      "from": "~/.cursor/rules/pstack-models.mdc",
+      "to": "~/.claude/rules/dstack-models.md"
+    },
+    {
+      "from": "~/.cursor/skills/",
+      "to": "~/.claude/skills/"
+    },
+    {
+      "from": ".cursor/skills/",
+      "to": ".claude/skills/"
+    },
+    {
+      "from": "@cursor-skill/",
+      "to": "@dstack-skill/"
+    },
+    {
+      "from": "/poteto-mode",
+      "to": "/dstack:d-mode",
+      "only": "skills/poteto-help/references/*.md"
+    },
+    {
+      "from": "poteto-mode",
+      "to": "d-mode"
+    },
+    {
+      "from": "poteto-agent",
+      "to": "d-agent"
+    },
+    {
+      "from": "poteto-help",
+      "to": "d-help"
+    },
+    {
+      "from": "setup-pstack",
+      "to": "setup-dstack"
+    },
+    {
+      "from": "pstack",
+      "to": "dstack"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "name": "d-stack",
+  "owner": {
+    "name": "Donghun1q2w"
+  },
+  "metadata": {
+    "description": "dstack: rigorous Claude Code workflows, principles, and language rule sets for Windows, C#, Python, Rust, and AVEVA PML."
+  },
+  "plugins": [
+    {
+      "name": "dstack",
+      "source": "./",
+      "description": "Rigorous agent workflows, 24 engineering principles, and language rule sets. Local build and test gate, then a direct push to main."
+    }
+  ]
+}

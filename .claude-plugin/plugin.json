@@ -1,0 +1,21 @@
+{
+  "name": "dstack",
+  "description": "Rigorous Claude Code workflows for a small Windows team: go deep first, write less and better code, verify locally, then push straight to main.",
+  "author": {
+    "name": "Donghun1q2w"
+  },
+  "homepage": "https://github.com/Donghun1q2w/d-stack",
+  "repository": "https://github.com/Donghun1q2w/d-stack",
+  "license": "MIT",
+  "keywords": [
+    "dstack",
+    "d-mode",
+    "workflow",
+    "principles",
+    "agent-style",
+    "subagents",
+    "unslop",
+    "windows",
+    "powershell"
+  ]
+}
